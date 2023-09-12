@@ -1,16 +1,63 @@
 // Productos
-import { productosSupermercado } from './productos.js';
-//import { modificarProducto } from './modificar.js';
 
 
-  const inputBusqueda = document.getElementById('busqueda');
-  const tablaProductos = document.getElementById('tablaProductos');
-  const botonOrdenarPorPrecioDs = document.getElementById('ordenarPorPrecioDs');
-  const botonOrdenarPorPrecioAs = document.getElementById('ordenarPorPrecioAs');
+document.addEventListener('DOMContentLoaded', function () {
+const inputBusqueda = document.getElementById('busqueda');
+const tablaProductos = document.getElementById('tablaProductos');
+const botonOrdenarPorPrecioDs = document.getElementById('ordenarPorPrecioDs');
+const botonOrdenarPorPrecioAs = document.getElementById('ordenarPorPrecioAs');
 
-  function renderizarProductos(productos) {
+//let productosSupermercado = [];
+
+fetch("../json/productos.json")
+.then((response) => response.json()) // Obtén el contenido del archivo como JSON
+.then((productosSupermercado) => {
+  
+  renderizarProductos(productosSupermercado);
+  // Agregar controlador de evento para el botón "Guardar" en cada modal
+  const botonesGuardar = document.querySelectorAll('[id^="botonModificar-"]');
+  
+  botonesGuardar.forEach(boton => {
+  boton.addEventListener('click', function(event) {
+    // Obtener el id del producto
+    const idProducto = event.currentTarget.getAttribute('data-idproducto');
+    
+    // Obtener los nuevos valores de input
+    const nuevoNombre = document.querySelector(`#nuevoNombre-${idProducto}`).value;
+    const nuevaCategoria = document.querySelector(`#nuevaCategoria-${idProducto}`).value;
+    const nuevoPrecio = document.querySelector(`#nuevoPrecio-${idProducto}`).value;
+    const nuevaCantidad = document.querySelector(`#nuevaCantidad-${idProducto}`).value;
+    
+    // Puedes utilizar los valores como desees
+    console.log('Nuevo Nombre:', nuevoNombre);
+    console.log('Nueva Categoría:', nuevaCategoria);
+    console.log('Nuevo Precio:', nuevoPrecio);
+    console.log('Nueva Cantidad Disponible:', nuevaCantidad);
+    
+    // Actualizar los valores correspondientes en productosSupermercado
+    for (let i = 0; i < productosSupermercado.length; i++) {
+      if (productosSupermercado[i].idProducto == idProducto) {
+        productosSupermercado[i].nombre = nuevoNombre;
+        productosSupermercado[i].categoria = nuevaCategoria;
+        productosSupermercado[i].precio = parseFloat(nuevoPrecio); // Convierte a número
+        productosSupermercado[i].cantidadDisponible = parseInt(nuevaCantidad); // Convierte a número entero
+        break; // Salir del bucle una vez que se haya actualizado el producto
+      }
+    }
+    // Renderizar la tabla de productos nuevamente con los valores actualizados
+    renderizarProductos(productosSupermercado);
+  });
+  });
+  
+  })
+  .catch((error) => {
+    console.error("Error al cargar los datos de productos:", error);
+  });
+  
+  
+  function renderizarProductos(productosSupermercado) {
     tablaProductos.innerHTML = '';
-    productos.forEach(({idProducto, nombre, categoria, precio, cantidadDisponible, marca}) => {
+    productosSupermercado.forEach(({idProducto, nombre, categoria, precio, cantidadDisponible, marca}) => {
       const fila = document.createElement('tr');
       fila.innerHTML = `
         <td>${idProducto}</td>
@@ -63,53 +110,13 @@ import { productosSupermercado } from './productos.js';
   function ordenarProductosPorPrecioAscedente() {
     const productosOrdenados = productosSupermercado.sort((productoA, productoB) => productoA.precio - productoB.precio);
   renderizarProductos(productosOrdenados);
-}
-inputBusqueda.addEventListener('input', filtrarProductos);
-botonOrdenarPorPrecioDs.addEventListener('click', ordenarProductosPorPrecioDescendente);
-botonOrdenarPorPrecioAs.addEventListener('click', ordenarProductosPorPrecioAscedente);
-
-// Iniciar la tabla con todos los productos al cargar la página
-renderizarProductos(productosSupermercado);
+  }
+  inputBusqueda.addEventListener('input', filtrarProductos);
+  botonOrdenarPorPrecioDs.addEventListener('click', ordenarProductosPorPrecioDescendente);
+  botonOrdenarPorPrecioAs.addEventListener('click', ordenarProductosPorPrecioAscedente);
+})
 
 
-
-// Agregar controlador de evento para el botón "Guardar" en cada modal
-const botonesGuardar = document.querySelectorAll('[id^="botonModificar-"]');
-
-botonesGuardar.forEach(boton => {
-  boton.addEventListener('click', function(event) {
-    // Obtener el id del producto
-    const idProducto = event.currentTarget.getAttribute('data-idproducto');
-
-    // Obtener los nuevos valores de input
-    const nuevoNombre = document.querySelector(`#nuevoNombre-${idProducto}`).value;
-    const nuevaCategoria = document.querySelector(`#nuevaCategoria-${idProducto}`).value;
-    const nuevoPrecio = document.querySelector(`#nuevoPrecio-${idProducto}`).value;
-    const nuevaCantidad = document.querySelector(`#nuevaCantidad-${idProducto}`).value;
-
-    // Puedes utilizar los valores como desees
-    console.log('Nuevo Nombre:', nuevoNombre);
-    console.log('Nueva Categoría:', nuevaCategoria);
-    console.log('Nuevo Precio:', nuevoPrecio);
-    console.log('Nueva Cantidad Disponible:', nuevaCantidad);
-
-    // Actualizar los valores correspondientes en productosSupermercado
-    for (let i = 0; i < productosSupermercado.length; i++) {
-      if (productosSupermercado[i].idProducto == idProducto) {
-        productosSupermercado[i].nombre = nuevoNombre;
-        productosSupermercado[i].categoria = nuevaCategoria;
-        productosSupermercado[i].precio = parseFloat(nuevoPrecio); // Convierte a número
-        productosSupermercado[i].cantidadDisponible = parseInt(nuevaCantidad); // Convierte a número entero
-        break; // Salir del bucle una vez que se haya actualizado el producto
-      }
-    }
-    // Renderizar la tabla de productos nuevamente con los valores actualizados
-    renderizarProductos(productosSupermercado);
-  });
-});
-
-
-document.body.classList.remove('modal-open');
 
 
 

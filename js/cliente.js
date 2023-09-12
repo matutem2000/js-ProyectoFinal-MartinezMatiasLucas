@@ -9,9 +9,6 @@ fetch("../json/productos.json")
   .then((response) => response.json()) // Obtén el contenido del archivo como JSON
   .then((data) => {
     productosSupermercado = data; // Asigna los datos obtenidos a la variable productosSupermercado
-    console.log(data); // Muestra los datos por consola
-    // Ahora que los datos se han cargado, puedes realizar cualquier lógica adicional que dependa de estos datos aquí mismo.
-    // Por ejemplo, podrías llamar a la función para renderizar productos aquí.
     renderizarProductos(productosSupermercado);
   })
   .catch((error) => {
