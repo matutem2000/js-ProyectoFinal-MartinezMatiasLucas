@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../img/icons8-supermarket-16.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../css/estilos.css">
+        <script src="../js/sw.js"></script>
+        <script type="module" type="module" src="../js/repositor.js" defer></script>
+        
+    <title>Perfil repositor</title>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="container">
+            <section>
+                <a class="btn btn-primary" href="../index.html">volver a inicio</a>
+                <h1>Productos</h1>
+                
+                <input type="text" id="busqueda" placeholder="Buscar producto o categoría">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio<button id="ordenarPorPrecioAs">&#8593;</button><button id="ordenarPorPrecioDs">&#8595;</button>
+                        </th>
+                        <th>Disponible</th>
+                        <th>Marca</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tablaProductos"></tbody>
+                </table>
+
+
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
