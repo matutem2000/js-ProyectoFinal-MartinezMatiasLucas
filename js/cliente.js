@@ -100,6 +100,7 @@ tablaProductos.addEventListener("click", function (event) {
     const precioProducto = parseFloat(event.target.getAttribute("data-precio"));
     const cantidadDisponible = parseFloat(
       event.target.getAttribute("data-cantidad")
+      
     );
 
     // Obtener los elementos de input del formulario en el modal
@@ -116,7 +117,7 @@ tablaProductos.addEventListener("click", function (event) {
       cantidadSeleccionada < 1 ||
       cantidadSeleccionada > cantidadDisponible
     ) {
-      alert("Por favor, ingresa una cantidad válida.");
+       
       return;
     }
 

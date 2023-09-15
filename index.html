@@ -8,40 +8,24 @@
         <link rel="stylesheet" href="./css/estilos.css">
         <link rel="shortcut icon" href="./img/icons8-supermarket-16.png">
         <script src="./js/sw.js"></script>
-        <script src="./js/script.js"></script>
-    <title>Selección perfil</title>
+        <script type="module" src="./js/script.js"></script>
+       
+    <title>Creación de perfil</title>
 </head>
 <body>
     <header></header>
     <main>
+        <h1 class="text-center">Genere su usuario y contraseña</h1>
         <div class="container">
             <section>
-                <form id="loginForm">
+                <form >
                     <div class="imgcontainer">
-                      <img src="./img/carritoSupermercado.jpg" alt="Avatar" class="avatar">
-                    </div>
-                    <div class="container">
-                      <label for="usuario"><b>Usuario</b></label>
-                      <input type="text" placeholder="Escriba su usuario" id="usuario" name="usuario" required>
-                  
-                      <label for="password"><b>Contraseña</b></label>
-                      <input type="password" placeholder="Escriba su contraseña" id="password" name="password" required>
-                      <label for="perfil"><b>Perfil</b></label>
-                      <select class="form-select" name="perfil" aria-label="Default select example">
-                          <option selected>Seleccione su perfil</option>
-                          <option value="1">Administrador</option>
-                          <option value="2">Repositor</option>
-                          <option value="3">Cliente</option>
-                      </select>
-                        <button type="submit">Inicio</button>
-                    </div>
-                    <div class="container" style="background-color:#f1f1f1">
-                        <button type="button" class="cancelbtn">Cancelar</button>
-                      <h4>Credenciales para ingreso</h4>
-                      <p><strong>Usuario : </strong>usuario</p>
-                      <p><strong>Contraseña : </strong>contraseña</p>
-                    </div>
-                </form> 
+                        <img src="./img/carritoSupermercado.jpg" alt="Avatar" class="avatar">
+                      </div>
+                    <input type="text" placeholder="ingrese el nombre de usuario" name="usuarioNuevo" id="usuarioNuevo">
+                    <input type="text" placeholder="ingrese la contraseña" name="passwordNuevo" id="passwordNuevo">
+                    <button type="button" id="crearUsuario">Crear</button>
+                </form>
             </section>
         </div>
     </main>
