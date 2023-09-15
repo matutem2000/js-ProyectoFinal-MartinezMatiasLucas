@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (storedPerfil) {
             switch (storedPerfil) {
                 case "1":
-                console.log("Ingresaste como Administrador");
                 window.location.href = "../pages/IndexAdministrador.html";
                 break;
                 case "2":
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }).then((result) => {
                     // Este código se ejecutará después de que se cierre la alerta (opcional)
                     if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log("Ingresaste como Repositor");
                     window.location.href = "../pages/IndexRepositor.html";
                     }
                 });

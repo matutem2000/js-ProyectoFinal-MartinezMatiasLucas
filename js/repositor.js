@@ -27,12 +27,7 @@ fetch("../json/productos.json")
     const nuevaCategoria = document.querySelector(`#nuevaCategoria-${idProducto}`).value;
     const nuevoPrecio = document.querySelector(`#nuevoPrecio-${idProducto}`).value;
     const nuevaCantidad = document.querySelector(`#nuevaCantidad-${idProducto}`).value;
-    
-    // Puedes utilizar los valores como desees
-    console.log('Nuevo Nombre:', nuevoNombre);
-    console.log('Nueva Categoría:', nuevaCategoria);
-    console.log('Nuevo Precio:', nuevoPrecio);
-    console.log('Nueva Cantidad Disponible:', nuevaCantidad);
+      
     
     // Actualizar los valores correspondientes en productosSupermercado
     for (let i = 0; i < productosSupermercado.length; i++) {
